@@ -1,11 +1,11 @@
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { typeOrmOptions } from './config/type-orm.options';
+import { TicketsModule } from './tickets/tickets.module';
 
 @Module({
-    imports: [TypeOrmModule.forRootAsync({ useFactory: () => typeOrmOptions })],
+    imports: [MikroOrmModule.forRoot(), TicketsModule],
     controllers: [AppController],
     providers: [AppService],
 })
