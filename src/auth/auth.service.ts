@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { SignInDto } from './dtos/sign-in.dto';
+import { SignUpDto } from './dtos/sign-up.dto';
 
 @Injectable()
 export class AuthService {
-    async signUp(): Promise<string> {
+    async signUp(signUpDto: SignUpDto): Promise<string> {
         return 'jwt-token-placeholder';
     }
 
-    async signIn(): Promise<string> {
+    async signIn(signInDto: SignInDto): Promise<string> {
         return 'jwt-token-placeholder';
     }
 }
