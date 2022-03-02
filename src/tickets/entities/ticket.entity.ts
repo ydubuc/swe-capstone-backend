@@ -20,8 +20,11 @@ export class Ticket {
     @Enum(() => TicketStatus)
     status: TicketStatus;
 
-    @Property({ onUpdate: () => new Date() })
-    updatedAt: Date = new Date();
+    @Property({
+        onUpdate: () => new Date(),
+        onCreate: () => new Date(),
+    })
+    updatedAt: Date;
 
     @Property({ onCreate: () => new Date() })
     createdAt: Date;
