@@ -17,10 +17,10 @@ export class User {
     email: string;
 
     @Property()
-    salt: string;
+    salt?: string;
 
     @Property()
-    password: string;
+    password?: string;
 
     @Property({
         onUpdate: () => new Date(),
@@ -35,9 +35,5 @@ export class User {
         this.firstName = signUpDto.firstName;
         this.lastName = signUpDto.lastName;
         this.email = signUpDto.email;
-        // TODO: generate salt
-        this.salt = 'generatedsalt123';
-        // TODO: encrypt password
-        this.password = this.salt + 'password123';
     }
 }
