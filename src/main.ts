@@ -1,3 +1,6 @@
+import { config } from 'dotenv';
+config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';

@@ -1,6 +1,6 @@
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
-import { SignUpDto } from '../../auth/dtos/sign-up.dto';
 import * as uuid from 'uuid';
+import { SignUpDto } from '../../auth/dtos/sign-up.dto';
 
 @Entity()
 export class User {
@@ -35,5 +35,6 @@ export class User {
         this.firstName = signUpDto.firstName;
         this.lastName = signUpDto.lastName;
         this.email = signUpDto.email;
+        // password will be hashed in usersService
     }
 }
