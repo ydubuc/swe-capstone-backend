@@ -8,6 +8,13 @@ This is the backend repository of the SWE Capstone class for GTRI
 $ npm install
 ```
 
+## Memos
+
+```
+# to update sqlite schemas
+$ npx mikro-orm schema:update --run
+```
+
 ## Running the app
 
 ```bash

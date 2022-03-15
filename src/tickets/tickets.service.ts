@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { handleError } from '../util/error-handler';
 import { CreateTicketDto } from './dtos/create-ticket.dto';
 import { Ticket } from './entities/ticket.entity';
-import { EntityManager } from '@mikro-orm/sqlite';
+import { EntityManager } from '@mikro-orm/core';
 
 @Injectable()
 export class TicketsService {
