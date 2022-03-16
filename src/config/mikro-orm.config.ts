@@ -15,6 +15,7 @@ const mikroOrmModuleOptions: Options = {
     migrations: {
         path: 'dist/migrations',
         pathTs: 'src/migrations',
+        disableForeignKeys: true,
     },
 };
 
