@@ -15,6 +15,10 @@ const mikroOrmModuleOptions: Options = {
     driverOptions: {
         connection: { ssl: { rejectUnauthorized: false } },
     },
+    migrations: {
+        path: 'dist/migrations',
+        pathTs: 'src/migrations',
+    },
 };
 
 export default mikroOrmModuleOptions;
