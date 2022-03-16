@@ -9,8 +9,10 @@ const mikroOrmModuleOptions: Options = {
         connection: { ssl: { rejectUnauthorized: false } },
     },
     migrations: {
+        tableName: 'mikro_orm_migrations',
         path: 'dist/migrations',
         pathTs: 'src/migrations',
+        glob: '!(*.d).{js,ts}',
     },
 };
 
