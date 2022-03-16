@@ -210,6 +210,5 @@ $RECYCLE.BIN/
 .env.*
 !.env.example
 sqlite-db
-migrations
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,vscode,node
