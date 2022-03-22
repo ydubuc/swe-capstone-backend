@@ -11,7 +11,10 @@ import { GetTicketsFilterDto } from './dtos/get-tickets-filter.dto';
 export class TicketsService {
     constructor(private em: EntityManager) {}
 
-    async createTicket(createTicketDto: CreateTicketDto): Promise<Ticket> {
+    async createTicket(
+        createTicketDto: CreateTicketDto,
+        user: User,
+    ): Promise<Ticket> {
         const ticket = new Ticket(createTicketDto);
 
         try {
@@ -38,7 +41,11 @@ export class TicketsService {
         id: string,
         editTicketDto: EditTicketDto,
         user: User,
-    ): Promise<Ticket> {}
+    ): Promise<Ticket> {
+        return;
+    }
 
-    async deleteTicket(id: string, user: User): Promise<void> {}
+    async deleteTicket(id: string, user: User): Promise<void> {
+        return;
+    }
 }
