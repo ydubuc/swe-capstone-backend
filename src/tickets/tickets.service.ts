@@ -3,6 +3,9 @@ import { handleError } from '../util/error-handler';
 import { CreateTicketDto } from './dtos/create-ticket.dto';
 import { Ticket } from './entities/ticket.entity';
 import { EntityManager } from '@mikro-orm/core';
+import { EditTicketDto } from './dtos/edit-ticket.dto';
+import { User } from '../users/entities/user.entity';
+import { GetTicketsFilterDto } from './dtos/get-tickets-filter.dto';
 
 @Injectable()
 export class TicketsService {
@@ -19,7 +22,10 @@ export class TicketsService {
         }
     }
 
-    async getTickets(): Promise<Ticket[]> {
+    async getTickets(
+        getTicketsFilterDto: GetTicketsFilterDto,
+        user: User,
+    ): Promise<Ticket[]> {
         try {
             const tickets = await this.em.find(Ticket, {});
             return tickets;
@@ -27,4 +33,12 @@ export class TicketsService {
             handleError(e);
         }
     }
+
+    async editTicket(
+        id: string,
+        editTicketDto: EditTicketDto,
+        user: User,
+    ): Promise<Ticket> {}
+
+    async deleteTicket(id: string, user: User): Promise<void> {}
 }
