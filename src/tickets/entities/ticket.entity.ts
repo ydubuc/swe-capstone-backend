@@ -1,4 +1,5 @@
-import { Entity, Enum, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, Enum, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { User } from '../../users/entities/user.entity';
 import { CreateTicketDto } from '../dtos/create-ticket.dto';
 import { TicketPriority } from '../enums/ticket-priority.enum';
 import { TicketStatus } from '../enums/ticket-status.enum';
@@ -19,6 +20,9 @@ export class Ticket {
 
     @Enum(() => TicketStatus)
     status: TicketStatus;
+
+    @ManyToOne(() => User)
+    user!: User;
 
     @Property({
         onUpdate: () => new Date(),

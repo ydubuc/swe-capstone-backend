@@ -6,6 +6,7 @@ import {
     Param,
     Patch,
     Post,
+    Query,
     UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -32,10 +33,10 @@ export class TicketsController {
 
     @Get()
     async getTickets(
-        @Body() getTicketsFilterDto: GetTicketsFilterDto,
+        @Query() filterDto: GetTicketsFilterDto,
         @GetUser() user: User,
     ): Promise<Ticket[]> {
-        return this.ticketsService.getTickets(getTicketsFilterDto, user);
+        return this.ticketsService.getTickets(filterDto, user);
     }
 
     @Patch(':id')
