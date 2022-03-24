@@ -4,6 +4,7 @@ import {
     Delete,
     Get,
     Param,
+    ParseIntPipe,
     Patch,
     Post,
     Query,
@@ -39,9 +40,17 @@ export class TicketsController {
         return this.ticketsService.getTickets(filterDto, user);
     }
 
+    @Get(':id')
+    async getTicket(
+        @Param('id', ParseIntPipe) id: number,
+        @GetUser() user: User,
+    ): Promise<Ticket> {
+        return this.ticketsService.getTicket(id, user);
+    }
+
     @Patch(':id')
     async editTicket(
-        @Param('id') id: string,
+        @Param('id', ParseIntPipe) id: number,
         @Body() editTicketDto: EditTicketDto,
         @GetUser() user: User,
     ): Promise<Ticket> {
@@ -50,7 +59,7 @@ export class TicketsController {
 
     @Delete(':id')
     async deleteTicket(
-        @Param('id') id: string,
+        @Param('id', ParseIntPipe) id: number,
         @GetUser() user: User,
     ): Promise<void> {
         return this.ticketsService.deleteTicket(id, user);

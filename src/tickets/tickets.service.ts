@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { handleError } from '../util/error-handler';
 import { CreateTicketDto } from './dtos/create-ticket.dto';
 import { Ticket } from './entities/ticket.entity';
@@ -53,15 +53,31 @@ export class TicketsService {
         }
     }
 
+    async getTicket(id: number, user: User): Promise<Ticket> {
+        try {
+            const ticket = await this.em.findOne(Ticket, { id, user });
+            if (!ticket) {
+                throw new NotFoundException('Ticket not found.');
+            }
+            return ticket;
+        } catch (e) {
+            handleError(e);
+        }
+    }
+
     async editTicket(
-        id: string,
+        id: number,
         editTicketDto: EditTicketDto,
         user: User,
     ): Promise<Ticket> {
         return;
     }
 
-    async deleteTicket(id: string, user: User): Promise<void> {
-        return;
+    async deleteTicket(id: number, user: User): Promise<void> {
+        try {
+            await this.em.nativeDelete(Ticket, { id, user });
+        } catch (e) {
+            handleError(e);
+        }
     }
 }
