@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { handleError } from '../util/error-handler';
 import { CreateTicketDto } from './dtos/create-ticket.dto';
 import { Ticket } from './entities/ticket.entity';
-import { EntityManager, FilterQuery } from '@mikro-orm/core';
+import { EntityManager, FilterQuery, wrap } from '@mikro-orm/core';
 import { EditTicketDto } from './dtos/edit-ticket.dto';
 import { User } from '../users/entities/user.entity';
 import { GetTicketsFilterDto } from './dtos/get-tickets-filter.dto';
@@ -59,6 +59,7 @@ export class TicketsService {
             if (!ticket) {
                 throw new NotFoundException('Ticket not found.');
             }
+
             return ticket;
         } catch (e) {
             handleError(e);
@@ -70,7 +71,19 @@ export class TicketsService {
         editTicketDto: EditTicketDto,
         user: User,
     ): Promise<Ticket> {
-        return;
+        try {
+            const ticket = await this.em.findOne(Ticket, { id, user });
+            if (!ticket) {
+                throw new NotFoundException('Ticket not found.');
+            }
+
+            wrap(ticket).assign(editTicketDto);
+            await this.em.persistAndFlush(ticket);
+
+            return ticket;
+        } catch (e) {
+            handleError(e);
+        }
     }
 
     async deleteTicket(id: number, user: User): Promise<void> {
