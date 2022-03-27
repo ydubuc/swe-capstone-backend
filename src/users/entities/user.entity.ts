@@ -1,6 +1,13 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import {
+    Collection,
+    Entity,
+    OneToMany,
+    PrimaryKey,
+    Property,
+} from '@mikro-orm/core';
 import * as uuid from 'uuid';
 import { SignUpDto } from '../../auth/dtos/sign-up.dto';
+import { Ticket } from '../../tickets/entities/ticket.entity';
 
 @Entity()
 export class User {
@@ -21,6 +28,9 @@ export class User {
 
     @Property()
     password?: string;
+
+    @OneToMany(() => Ticket, (ticket) => ticket.user)
+    tickets = new Collection<Ticket>(this);
 
     @Property({
         onUpdate: () => new Date(),
