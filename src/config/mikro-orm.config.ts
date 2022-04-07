@@ -1,11 +1,11 @@
 import { Options } from '@mikro-orm/core';
 
+// local development options
 const mikroOrmModuleOptions: Options = {
     entities: ['dist/**/*.entity{.ts,.js}'],
     entitiesTs: ['src/**/*.entity{.ts,.js}'],
     type: 'sqlite',
     dbName: 'sqlite-db',
-    // clientUrl: process.env.DATABASE_URL,
     driverOptions: {
         connection: { ssl: { rejectUnauthorized: false } },
     },
@@ -17,6 +17,7 @@ const mikroOrmModuleOptions: Options = {
     },
 };
 
+// // production options
 // const mikroOrmModuleOptions: Options = {
 //     entities: ['dist/**/*.entity{.ts,.js}'],
 //     entitiesTs: ['src/**/*.entity{.ts,.js}'],
