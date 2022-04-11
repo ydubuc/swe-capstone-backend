@@ -1,6 +1,6 @@
 import { Options } from '@mikro-orm/core';
 
-// local development options
+// development options
 const mikroOrmModuleOptions: Options = {
     entities: ['dist/**/*.entity{.ts,.js}'],
     entitiesTs: ['src/**/*.entity{.ts,.js}'],
