@@ -21,4 +21,20 @@ describe('AppController (e2e)', () => {
             .expect(200)
             .expect('Hello World!');
     });
+
+    it('/tickets (POST)', () => {
+        return request(app.getHttpServer()).post('/tickets').expect(401);
+    });
+
+    it('/tickets (GET)', () => {
+        return request(app.getHttpServer()).get('/tickets').expect(401);
+    });
+
+    it('/tickets/{id} (PATCH)', () => {
+        return request(app.getHttpServer()).patch('/tickets/1').expect(401);
+    });
+
+    it('/tickets/{id} (DELETE)', () => {
+        return request(app.getHttpServer()).delete('/tickets/1').expect(401);
+    });
 });
