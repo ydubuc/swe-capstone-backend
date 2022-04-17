@@ -1,84 +1,88 @@
 {
-  "namespaces": [],
+  "namespaces": [
+    "public"
+  ],
+  "name": "public",
   "tables": [
     {
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "first_name": {
           "name": "first_name",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "last_name": {
           "name": "last_name",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "email": {
           "name": "email",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "salt": {
           "name": "salt",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "password": {
           "name": "password",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "datetime",
+          "type": "timestamptz(0)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 0,
+          "length": 6,
           "mappedType": "datetime"
         },
         "created_at": {
           "name": "created_at",
-          "type": "datetime",
+          "type": "timestamptz(0)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 0,
+          "length": 6,
           "mappedType": "datetime"
         }
       },
       "name": "user",
+      "schema": "public",
       "indexes": [
         {
           "columnNames": [
@@ -90,7 +94,7 @@
           "unique": true
         },
         {
-          "keyName": "primary",
+          "keyName": "user_pkey",
           "columnNames": [
             "id"
           ],
@@ -106,7 +110,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "integer",
+          "type": "serial",
           "unsigned": true,
           "autoincrement": true,
           "primary": true,
@@ -115,21 +119,21 @@
         },
         "title": {
           "name": "title",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "description": {
           "name": "description",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "priority": {
           "name": "priority",
@@ -160,47 +164,39 @@
         },
         "user_id": {
           "name": "user_id",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "datetime",
+          "type": "timestamptz(0)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 0,
+          "length": 6,
           "mappedType": "datetime"
         },
         "created_at": {
           "name": "created_at",
-          "type": "datetime",
+          "type": "timestamptz(0)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 0,
+          "length": 6,
           "mappedType": "datetime"
         }
       },
       "name": "ticket",
+      "schema": "public",
       "indexes": [
         {
-          "columnNames": [
-            "user_id"
-          ],
-          "composite": false,
-          "keyName": "ticket_user_id_index",
-          "primary": false,
-          "unique": false
-        },
-        {
-          "keyName": "primary",
+          "keyName": "ticket_pkey",
           "columnNames": [
             "id"
           ],
@@ -216,11 +212,11 @@
           "columnNames": [
             "user_id"
           ],
-          "localTableName": "ticket",
+          "localTableName": "public.ticket",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "user",
+          "referencedTableName": "public.user",
           "updateRule": "cascade"
         }
       }
