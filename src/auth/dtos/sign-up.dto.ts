@@ -1,4 +1,10 @@
-import { IsEmail, IsNotEmpty, IsString, Length } from 'class-validator';
+import {
+    IsEmail,
+    IsNotEmpty,
+    IsString,
+    Length,
+    Matches,
+} from 'class-validator';
 
 export class SignUpDto {
     @IsNotEmpty()
@@ -20,6 +26,9 @@ export class SignUpDto {
     @IsNotEmpty()
     @IsString()
     @Length(8, 512)
-    // TODO: add constraints with regex
+    @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+        message:
+            'password must contain 1 uppercase letter, 1 lowercase letter, and 1 number or special character',
+    })
     password: string;
 }
