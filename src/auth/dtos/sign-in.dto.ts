@@ -6,13 +6,13 @@ import {
     Matches,
 } from 'class-validator';
 
+// note: keep this sync with signUpDto
 export class SignInDto {
     @IsNotEmpty()
     @IsEmail()
     @Length(5, 256)
     email: string;
 
-    // Note: keep this sync with signUpDto
     @IsNotEmpty()
     @IsString()
     @Length(8, 512)
