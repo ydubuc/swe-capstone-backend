@@ -23,10 +23,10 @@ export class User {
     @Property({ unique: true })
     email: string;
 
-    @Property()
+    @Property({ hidden: true })
     salt?: string;
 
-    @Property()
+    @Property({ hidden: true })
     password?: string;
 
     @OneToMany(() => Ticket, (ticket) => ticket.user)

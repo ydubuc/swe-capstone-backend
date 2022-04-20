@@ -4,8 +4,8 @@ import { Options } from '@mikro-orm/core';
 // const mikroOrmModuleOptions: Options = {
 //     entities: ['dist/**/*.entity{.ts,.js}'],
 //     entitiesTs: ['src/**/*.entity{.ts,.js}'],
-//     type: 'postgresql',
-//     dbName: 'test',
+//     type: 'sqlite',
+//     dbName: 'sqlite-db',
 //     driverOptions: {
 //         connection: { ssl: { rejectUnauthorized: false } },
 //     },
