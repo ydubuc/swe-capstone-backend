@@ -20,7 +20,7 @@ export class User {
     @Property()
     lastName: string;
 
-    @Property({ unique: true })
+    @Property({ unique: true, hidden: true })
     email: string;
 
     @Property({ hidden: true })

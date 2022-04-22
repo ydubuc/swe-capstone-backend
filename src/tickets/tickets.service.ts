@@ -46,7 +46,9 @@ export class TicketsService {
         }
 
         try {
-            const tickets = await this.em.find(Ticket, query);
+            const tickets = await this.em.find(Ticket, query, {
+                populate: ['user'],
+            });
             return tickets;
         } catch (e) {
             handleError(e);
@@ -55,7 +57,11 @@ export class TicketsService {
 
     async getTicket(id: number, user: User): Promise<Ticket> {
         try {
-            const ticket = await this.em.findOne(Ticket, { id, user });
+            const ticket = await this.em.findOne(
+                Ticket,
+                { id, user },
+                { populate: ['user'] },
+            );
             if (!ticket) {
                 throw new NotFoundException('Ticket not found.');
             }
@@ -72,7 +78,11 @@ export class TicketsService {
         user: User,
     ): Promise<Ticket> {
         try {
-            const ticket = await this.em.findOne(Ticket, { id, user });
+            const ticket = await this.em.findOne(
+                Ticket,
+                { id, user },
+                { populate: ['user'] },
+            );
             if (!ticket) {
                 throw new NotFoundException('Ticket not found.');
             }

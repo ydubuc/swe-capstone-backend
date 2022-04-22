@@ -5,7 +5,7 @@ import { Options } from '@mikro-orm/core';
 //     entities: ['dist/**/*.entity{.ts,.js}'],
 //     entitiesTs: ['src/**/*.entity{.ts,.js}'],
 //     type: 'sqlite',
-//     dbName: 'sqlite-db',
+//     dbName: 'testdb.sqlite3',
 //     driverOptions: {
 //         connection: { ssl: { rejectUnauthorized: false } },
 //     },

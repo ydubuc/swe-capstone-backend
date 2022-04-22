@@ -1,8 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { GetUsersFilterDto } from './dtos/get-users-filter.dto';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
+@UseGuards(AuthGuard())
 @Controller('users')
 export class UsersController {
     constructor(private usersService: UsersService) {}
