@@ -56,6 +56,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Wiki
+
+[Find more information on the wiki pages](https://github.com/ydubuc/swe-capstone-backend/wiki)
+
 ## License
 
 This project is [MIT licensed](LICENSE).
