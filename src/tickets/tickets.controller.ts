@@ -11,6 +11,7 @@ import {
     UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ThrottlerGuard } from '@nestjs/throttler';
 import { GetUser } from '../users/decorators/get-user.decorator';
 import { User } from '../users/entities/user.entity';
 import { CreateTicketDto } from './dtos/create-ticket.dto';
@@ -19,7 +20,7 @@ import { GetTicketsFilterDto } from './dtos/get-tickets-filter.dto';
 import { Ticket } from './entities/ticket.entity';
 import { TicketsService } from './tickets.service';
 
-@UseGuards(AuthGuard())
+@UseGuards(ThrottlerGuard, AuthGuard())
 @Controller('tickets')
 export class TicketsController {
     constructor(private ticketsService: TicketsService) {}
