@@ -1,4 +1,4 @@
-import { EntityManager } from '@mikro-orm/core';
+import { EntityManager, FilterQuery } from '@mikro-orm/core';
 import {
     ConflictException,
     Injectable,
@@ -8,6 +8,7 @@ import { SignUpDto } from '../auth/dtos/sign-up.dto';
 import { handleError } from '../util/error-handler';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcryptjs';
+import { GetUsersFilterDto } from './dtos/get-users-filter.dto';
 
 @Injectable()
 export class UsersService {
@@ -29,12 +30,32 @@ export class UsersService {
         }
     }
 
+    async getUsers(filterDto: GetUsersFilterDto): Promise<User[]> {
+        const { firstName, lastName } = filterDto;
+        const query: FilterQuery<User> = {};
+
+        if (firstName) {
+            query.firstName = { $like: `%${firstName}%` };
+        }
+        if (lastName) {
+            query.lastName = { $like: `%${lastName}%` };
+        }
+
+        try {
+            const users = await this.em.find(User, query);
+            return users;
+        } catch (e) {
+            handleError(e);
+        }
+    }
+
     async getUserById(id: string): Promise<User> {
         try {
             const user = await this.em.findOne(User, { id });
             if (!user) {
                 throw new NotFoundException('User not found.');
             }
+
             return user;
         } catch (e) {
             handleError(e);
@@ -47,6 +68,7 @@ export class UsersService {
             if (!user) {
                 throw new NotFoundException('User not found.');
             }
+
             return user;
         } catch (e) {
             handleError(e);
